@@ -1,0 +1,23 @@
+name: AuthMe
+main: de.fgtech.fabe.AuthMe.AuthMe
+version: 0.72
+commands:
+    login:
+        description: With this command a player can login!
+        usage:
+        aliases: l
+    register:
+        description: With this command a player can register!
+        usage:
+    changepassword:
+        description: With this command you can change your password!
+        usage:
+    logout:
+        description: With this command a player can logout!
+        usage:
+    unregister:
+        description: With this command you can delete your account!
+        usage:
+    authme:
+        description: General command for Ops to control AuthMe!
+        usage:

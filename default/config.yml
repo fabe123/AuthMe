@@ -1,0 +1,141 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                  DataController                      | #
+# +------------------------------------------------------+ #
+############################################################
+DataController:
+    # This Cache saves registration details like username and password
+    # Change it to false, if you want edit the datasource under runtime
+    # Otherwise let it to true!
+    CacheEnabled: true
+ 
+    # Possible datasources are 'flatfile' or 'mysql'
+    Datasource: flatfile
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |                       Misc                           | #
+# +------------------------------------------------------+ #
+############################################################ 
+Misc:
+    # Set it to false, if you want let the player decide, if he should register or not
+    ForceRegistration: true
+    
+    # If it's enabled, it will kick non-registered players before they could join    
+    # Make sure to edit the Kick.NotRegistered message in message file!    
+    KickNonRegistered: false
+    
+    # What has to be done, if a player typed a wrong password?
+    # Kick him (true) or only warn him with a simple chat message (false)
+    KickOnWrongPassword: true
+    
+    # Kick a non-loggedin player after he has reached a certain timeout (in seconds)
+    # To disable this, set it to 0
+    LoginTimeout: 90
+    
+    # The intervall between Alert.Login and Alert.Registration messages (in seconds)
+    AlertInterval: 5
+    
+    # What should we allow unregistered players?
+    AllowNonRegistered:
+        Chat: false
+        # Following commands are allowed to use
+        # Be warned: Additionally every subcommand gets allowed, e.g. '/uptime today'
+        Commands:
+        - uptime
+        WalkAroundSpawn:
+            Enabled: false
+            Radius: 20
+    
+    # What should we allow players, that are not logged in?
+    AllowNonLoggedIn:
+        # Following commands are allowed to use (and every subcommand!)
+        # Be warned: Additionally every subcommand gets allowed, e.g. '/uptime today'
+        Commands:
+        - uptime
+    
+    # Following players get unrestricted access without the force to log in
+    # Use this function, if you use plugins, that create bots (NPCs)!
+    AllowPlayerUnrestrictedAccess:
+    - Bot01
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |              Playername Restrictions                 | #
+# +------------------------------------------------------+ #
+############################################################ 
+PlayerNameRestriction:
+    # The name of a player should have the following maximum and minimum length
+    PlayerNameMaxLength: 20
+    PlayerNameMinLength: 3
+    
+    # The characters in the name can be restricted by RegEx
+    # For more informatiom about RegEx visit
+    # http://en.wikipedia.org/wiki/Regular_expression#POSIX_character_classes
+    PlayerNameRegex: '[a-zA-Z0-9_?]*' 
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |                   Login Sessions                     | #
+# +------------------------------------------------------+ #
+############################################################ 
+LoginSessions:
+    # This function automatically logs players in, if they were already logged
+    # in before their last disconnect
+    Enabled: false
+    
+    # Maximum timeout between last logout and new connection (in seconds)
+    MaximalTimePeriod: 5
+    
+    # Be warned: Only disable this, if you know what you are doing!
+    # Disabling this makes AuthMe not comparing old and new IPs and maybe
+    # grants access to name spoofers (in case you are in offline-mode)
+    IPCheckEnabled: true 
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |                     Commands                         | #
+# +------------------------------------------------------+ #
+############################################################ 
+Commands:
+    Users:
+        ChangePasswordEnabled: true
+        RegisterEnabled: true
+        UnregisterEnabled: true
+        LoginEnabled: true
+        LogoutEnabled: true
+    Ops:
+        ReloadAuthsEnabled: true
+        ResetAuthEnabled: true
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |                  MySQL Settings                      | #
+# +------------------------------------------------------+ #
+############################################################ 
+MySQL:
+    # Connection details
+    Connection:
+        Host: localhost
+        Port: 3306
+        Database: test
+        Username: root
+        Password: pass
+    
+    # Settings for a custom user table
+    # Do not change this, if you don't have any scripts reqiring this
+    Custom:
+        TableName: authme
+        ColumnUsername: username
+        ColumnPassword: password
+        # Custom information, that a player has to type on /register command
+        # This function is only available for MySQL as datasource!
+        # Make sure that you have a column with the right name in your database!
+        # The information gets checked, if it complies to the given RegEx string
+        # If the check was successfull, the information get stored in the respective column
+        # A line must be built up like following:
+        #   columnname: 'regexstring'
+        # For good RegEx strings visit http://regexlib.com
+        # If you are still unsure, check the given example below (email)
+        RegistrationInfo:
+#            email: '^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$'
